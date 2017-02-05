@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="col-md-4">
-          <item v-for="item in items" :item="item" v-bind:removeItem="removeItem" />
+          <item v-for="item in items" :item="item" />
       </div>
   </div>
 </template>
@@ -13,33 +13,37 @@
         name: 'screen',
         data() {
             return {
-                items: [{
-                    key: "1",
-                    text: "asdfasdf"
+                itemsToStore: [{
+                    key: 1,
+                    text: "test1"
                 }, {
-                    key: "2",
-                    text: "lore ipsum"
+                    key: 2,
+                    text: "test2"
                 }, {
-                    key: "3",
-                    text: "qwertz"
+                    key: 3,
+                    text: "test3"
                 }, {
-                    key: "4",
-                    text: "sdfgdfgsdfg"
+                    key: 4,
+                    text: "test4"
                 }, {
-                    key: "5",
-                    text: "dfg gaertgsd"
+                    key: 5,
+                    text: "test5"
                 }, {
-                    key: "6",
-                    text: "fhh5 stg egbv erg"
-                }]
+                    key: 6,
+                    text: "test6"
+                }, ]
             }
         },
         methods: {
-            removeItem(itemToRemove) {
-                this.items = this.items.filter((i) => {
-                    return i.key !== itemToRemove.key
-                });
-            },
+
+        },
+        computed: {
+            items() {
+                return this.$store.getters.items;
+            }
+        },
+        created() {
+            this.$store.dispatch('addItems', this.itemsToStore)
         },
         components: {
             Item

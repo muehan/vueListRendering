@@ -9,7 +9,7 @@
 <script>
     export default {
         name: 'item',
-        props: ['item', 'removeItem'],
+        props: ['item'],
         data() {
             return {
 
@@ -17,7 +17,7 @@
         },
         methods: {
             remove() {
-                this.removeItem(this.item);
+                this.$store.dispatch('removeItem', this.item);
             }
         },
     }
